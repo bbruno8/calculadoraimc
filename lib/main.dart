@@ -34,13 +34,17 @@ class _HomeState extends State<Home> {
 
   // Função que limpa os campos de entrada e o estado do formulário
   void resetFields() {
-    weightController.clear();
-    heightController.clear();
-    _formKey.currentState?.reset();
     setState(() {
+      weightController.text = "";
+      heightController.text = "";
       infoText = "";
+
+      // remove o foco dos campos para forçar atualização assim evitando que os dados anteriores voltem para a tela
+      FocusScope.of(context).unfocus();
     });
   }
+
+
 
   // Função que calcula o IMC e atualiza o texto e a cor baseados no resultado
   void calculete() {
